@@ -16,8 +16,8 @@ class Reponse(models.Model):
 
 class Question(models.Model):
     libelle = models.TextField(null=False)
-    Reponse = models.ForeignKey(Reponse, on_delete=models.CASCADE)
-    Questionnaire = models.ForeignKey(Questionnaire, on_delete = models.CASCADE)
+    Reponse = models.ForeignKey(Reponse, on_delete=models.PROTECT)
+    questionnaire = models.ForeignKey(Questionnaire, on_delete=models.PROTECT, default='')
 
     def __str__(self):
         return self.libelle

@@ -9,7 +9,6 @@ def QuestionnaireList(request):
     """
     Retourne liste de Questionnaire
     """
-    data = []
-    for elem in Questionnaire.objects.all():
-        data.append(elem.nom)
-    return JsonResponse({"QCM" : data})
+    data = Questionnaire.objects.all()
+    serialize_data = serializers.serialize('python', data)
+    return JsonResponse(serialize_data, safe=False)
