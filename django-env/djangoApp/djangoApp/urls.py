@@ -20,4 +20,5 @@ from menu_questionnaire import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('listQuestionnaire/', views.QuestionnaireList),
+    path('listQuestion/<idQuestionnaire>', views.listQuestion),
 ]
