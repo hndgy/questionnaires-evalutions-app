@@ -1,21 +1,20 @@
 from django.shortcuts import render
-import logging
 from django.http import JsonResponse
-from menu_questionnaire.models import Questionnaire, Question, Reponse, Etudiant
-from django.core import serializers
+from menu_questionnaire import models
+from menu_questionnaire import serializers
+from rest_framework import viewsets
 
 
-# Create your views here.
-
-def QuestionnaireList(request):
+class QuestionnaireViews(viewsets.ReadOnlyModelViewSet):
     """
-    Retourne liste de Questionnaire
+    retourne la liste des Questionnaires
     """
-    data = Questionnaire.objects.all()
-    serialize_data = serializers.serialize('python', data)
-    return JsonResponse(serialize_data, safe=False)
+    queryset = models.Questionnaire.objects.all()
+    serializer_class = serializers.QuestionnaireSerializers
 
-def listQuestion(request, idQuestionnaire):
-    data = Question.objects.filter(questionnaire_id = idQuestionnaire)
-    serialize_data = serializers.serialize('python', data)
-    return JsonResponse(serialize_data, safe=False)
+class QuestionViews(viewsets.ReadOnlyModelViewSet):
+    """
+    retourne la liste des question
+    """
+    queryset = models.Question.objects.all()
+    serializer_class = serializers.QuestionSerializers
