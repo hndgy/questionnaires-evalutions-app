@@ -56,9 +56,19 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_ALLOW_ALL = False
 
-CORS_ORIGIN_WHITELIST = (
-    'http//:localhost:8000',
+CORS_ORIGIN_WHITELIST =  (
+    'https://localhost:4200',
+    'http://localservername',
 )
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',

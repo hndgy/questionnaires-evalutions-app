@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import url
+from django.urls import reverse
 from django.urls import path
 from rest_framework import routers
 from django.conf.urls import include
@@ -23,8 +24,9 @@ from menu_questionnaire import views
 router = routers.DefaultRouter()
 router.register(r'listQuestionnaire', views.QuestionnaireViews)
 router.register(r'listQuestion', views.QuestionViews)
+router.register(r'listReponse', views.ReponseViews)
 
 urlpatterns = [
-    path('info/', include(router.urls)),
+    path('api/', include(router.urls)),
     path('admin/', admin.site.urls),
 ]
