@@ -25,8 +25,6 @@ class Question(models.Model):
 class Questionnaire(models.Model):
     nom = models.CharField(max_length=50, default='')
     listQuestion = models.ManyToManyField(Question)
-    reponseEtu = models.ForeignKey(Etudiant)
-    reponseQ = models.ForeignKey(Question)
 
     def __str__(self):
         return self.nom
