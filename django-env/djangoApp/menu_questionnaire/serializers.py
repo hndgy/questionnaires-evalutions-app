@@ -1,28 +1,13 @@
 from rest_framework import serializers
 from menu_questionnaire import models
+from django.contrib.auth import update_session_auth_hash
+from menu_questionnaire.models import ReponseEtudiant
 
 class QuestionnaireSerializers(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.Questionnaire
         fields = ('id', 'url', 'nom', 'listQuestion')
         depth = 1
-
-            # def update(self, instance, validated_data):
-            # instance.username = validated_data.get('username', instance.username)
-            # instance.tagline = validated_data.get('tagline', instance.tagline)
-            #
-            # instance.save()
-            #
-            # password = validated_data.get('password', None)
-            # confirm_password = validated_data.get('confirm_password', None)
-            #
-            # if password and confirm_password and password == confirm_password:
-            #     instance.set_password(password)
-            #     instance.save()
-            #
-            # update_session_auth_hash(self.context.get('request'), instance)
-            #
-            # return instance
 
 class QuestionSerializers(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -35,3 +20,37 @@ class ReponseSerializers(serializers.HyperlinkedModelSerializer):
         model = models.Reponse
         fields = ('id', 'libelle', 'point')
         depth = 1
+
+
+class ReponseEtudiantSerializers(serializers.Serializer):
+    class Meta:
+        model = ReponseEtudiant
+        fields = ('FK_Question', 'FK_Questionnaire', 'FK_Etudiant', 'ReponseEtu')
+
+    def create(self, validated_data):
+        reponseEtu = ReponseEtu(
+            FK_Question = validated_data['FK_Question'],
+            FK_Questionnaire = validated_data['FK_Questionnaire'],
+            FK_Etudiant = validated_data['FK_Etudiant'],
+            ReponseEtu = validated_data['ReponseEtu']
+        )
+        reponseEtu.save()
+        return ReponseEtu
+
+class EtudiantSerializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.Etudiant
+        fields = ('pseudo', 'password', 'TableauEtu')
+
+    def create(self, validated_data):
+        etudiant = models.Etudiant.objects.create(**validated_data)
+        return etudiant
+
+    def update(self, instance, validated_data):
+        instance.pseudo = validated_data.get('pseudo', instance.pseudo)
+        instance.password = validated_data.get('password', instance.password)
+        instance.TableauEtu = validated_data.get('TableauEtu', instance.TableauEtu)
+        instance.save()
+
+        return instance
