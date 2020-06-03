@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
-
-class MenuQuestionnaireConfig(AppConfig):
+class ApiConfig(AppConfig):
     name = 'menu_questionnaire'
+

@@ -1,26 +1,14 @@
-from django.shortcuts import render
-from django.http import JsonResponse
-from menu_questionnaire import models
-from menu_questionnaire import serializers
 from rest_framework import viewsets
+from .serializers import EtudiantSerializer, EtudiantMiniSerializer
+from .models import Etudiant
+from rest_framework.response import Response
 
-class QuestionnaireViews(viewsets.ModelViewSet):
-    """
-    retourne la liste des Questionnaires
-    """
-    queryset = models.Questionnaire.objects.all()
-    serializer_class = serializers.QuestionnaireSerializers
 
-class QuestionViews(viewsets.ModelViewSet):
-    """
-    retourne la liste des question
-    """
-    queryset = models.Question.objects.all()
-    serializer_class = serializers.QuestionSerializers
+class EtudiantViewSet(viewsets.ModelViewSet):
+    queryset = Etudiant.objects.all()
+    serializer_class = EtudiantSerializer
 
-class ReponseViews(viewsets.ModelViewSet):
-    """
-    retourne les reponses en base
-    """
-    queryset = models.Reponse.objects.all()
-    serializer_class = serializers.ReponseSerializers
+    def list(self, request, *args, **kwargs):
+        etudiants = Etudiant.objects.all()
+        serializer = EtudiantMiniSerializer(etudiants, many=True)
+        return Response(serializer.data)
