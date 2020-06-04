@@ -5,8 +5,8 @@ class Utilisateur(models.Model):
     nom = models.CharField(max_length=25, unique=True, null=False)
     prenom = models.CharField(max_length=25, unique=True, null=False)
     num = models.CharField(max_length=8, unique=True, null = False, default="")
-    role = models.CharField(max_length=25, unique=True, null = False, default="etudiant")
-    password = models.CharField(max_length=25,unique=True, null = False )
+    role = models.CharField(max_length=25, unique=False, null = False, default="etudiant")
+    password = models.CharField(max_length=25,unique=False, null = False )
 
     def __str__(self):
         return self.nom
@@ -14,7 +14,7 @@ class Utilisateur(models.Model):
 class Questionnaire(models.Model):
     libelle = models.CharField(max_length=50, null = False)
     prof = models.ForeignKey(Utilisateur, on_delete = models.PROTECT, related_name="%(class)s_create_utilisateur", null = True)
-    listRepondant = models.ForeignKey(Utilisateur, on_delete = models.PROTECT,related_name="%(class)s_liste_utilisateur", null = True)
+    listRepondant = models.ManyToManyField(Utilisateur)
     question = models.ForeignKey("Question", on_delete= models.PROTECT, null = True, related_name="%(class)s_first_question")
 
     def __str__(self):

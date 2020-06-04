@@ -56,8 +56,23 @@ def api_create_utilisateur_views(request):
 @api_view(['POST'])
 def api_create_reponse_views(request):
     if request.method == "POST":
+        print(request.data)
         serializer = serializers.ReponseSerializers(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status= status.HTTP_201_CREATED)
         return Response(serializer.errors, status= status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['PUT'])
+def api_put_questionnaire_views(request, idQ):
+    questionnaire = Questionnaire.objects.get(id = idQ)
+    if request.method == "PUT":
+        serializer = serializers.QuestionnaireSerializers(questionnaire, data = request.data)
+        data = {}
+        if serializer.is_valid():
+            serializer.save()
+            data['sucess']= 'bien modifié'
+            return Response(data = data)
+        else:
+            return Response(serializer.errors, status= status.HTTP_400_BAD_REQUEST)
