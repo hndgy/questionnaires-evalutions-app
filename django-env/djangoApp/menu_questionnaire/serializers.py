@@ -1,12 +1,12 @@
 from rest_framework import serializers
-from .models import Etudiant
+from .models import Utilisateur
 
-class EtudiantSerializer(serializers.ModelSerializer):
+class UtilisateurSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Etudiant
-        fields = ('id', 'pseudo', 'password')
+        model = Utilisateur
+        fields = ('id', 'nom', 'prenom', 'num', 'role', 'password')
 
-class EtudiantMiniSerializer(serializers.ModelSerializer):
+class UtilisateurMiniSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Etudiant
-        fields = ('id', 'pseudo')
+        model = Utilisateur
+        fields = ('id', 'nom', 'prenom')

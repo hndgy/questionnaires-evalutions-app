@@ -7,57 +7,57 @@ import { ApiService } from './api.service';
   providers: [ApiService]
 })
 export class AppComponent {
-  etudiants = [{pseudo: 'mamady'}];
-  selectedEtudiant;
+  utilisateurs = [{nom: 'mamady'}];
+  selectedUtilisateur;
 
   constructor(private api: ApiService) {
-    this.getEtudiant();
-    this.selectedEtudiant = {id: -1, pseudo: '' , password: '' };
+    this.getUtilisateurs();
+    this.selectedUtilisateur = {id: -1, nom: '' , prenom: '' , num: 0 , role: '' , password: '' };
   }
-  getEtudiant = () => {
-    this.api.getAllEtudiant().subscribe(
+  getUtilisateurs = () => {
+    this.api.getAllUtilisateurs().subscribe(
       data => {
-        this.etudiants = data;
+        this.utilisateurs = data;
       },
       error => {
         console.log(error);
       }
     );
   }
-  EtudiantClicked = (etudiant) => {
-    this.api.getOneEtudiant(etudiant.id).subscribe(
+  UtilisateurClicked = (utilisateur) => {
+    this.api.getOneUtilisateur(utilisateur.id).subscribe(
       data => {
-        this.selectedEtudiant = data;
+        this.selectedUtilisateur = data;
       },
       error => {
         console.log(error);
       }
     );
   }
-  updateEtudiant = () => {
-    this.api.updateEtudiant(this.selectedEtudiant).subscribe(
+  updateUtilisateur = () => {
+    this.api.updateUtilisateur(this.selectedUtilisateur).subscribe(
       data => {
-        this.getEtudiant();
+        this.getUtilisateurs();
       },
       error => {
         console.log(error);
       }
     );
   }
-  createEtudiant = () => {
-    this.api.createEtudiant(this.selectedEtudiant).subscribe(
+  createUtilisateur = () => {
+    this.api.createUtilisateur(this.selectedUtilisateur).subscribe(
       data => {
-        this.etudiants.push(data);
+        this.utilisateurs.push(data);
       },
       error => {
         console.log(error);
       }
     );
   }
-  deleteEtudiant = () => {
-    this.api.deleteEtudiant(this.selectedEtudiant.id).subscribe(
+  deleteUtilisateur = () => {
+    this.api.deleteUtilisateur(this.selectedUtilisateur.id).subscribe(
       data => {
-        this.getEtudiant();
+        this.getUtilisateurs();
       },
       error => {
         console.log(error);

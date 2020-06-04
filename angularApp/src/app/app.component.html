@@ -1,12 +1,15 @@
 <<h2>List of movies</h2>
 <ul>
-  <li *ngFor="let etudiant of etudiants">
-    <h2 (click)="EtudiantClicked(etudiant)">{{etudiant.pseudo}}</h2>
+  <li *ngFor="let utilisateur of utilisateurs">
+    <h2 (click)="UtilisateurClicked(utilisateur)">{{utilisateur.nom}}</h2>
   </li>
 </ul>
 <hr>
-Pseudo <input type="text" [(ngModel)]="selectedEtudiant.pseudo"/><br>
-Password<input type="text" [(ngModel)]="selectedEtudiant.password"/><br>
-<button *ngIf="selectedEtudiant.id != -1" (click)="updateEtudiant()"> Modifier </button>
-<button *ngIf="selectedEtudiant.id == -1" (click)="createEtudiant()"> Enregistrer </button>
-<button *ngIf="selectedEtudiant.id != -1" (click)="deleteEtudiant()"> Supprimer </button>
+Nom <input type="text" [(ngModel)]="selectedUtilisateur.nom"/><br>
+Prenom<input type="text" [(ngModel)]="selectedUtilisateur.prenom"/><br>
+Matricule <input type="text" [(ngModel)]="selectedUtilisateur.num"/><br>
+Role<input type="text" [(ngModel)]="selectedUtilisateur.role"/><br>
+Password<input type="text" [(ngModel)]="selectedUtilisateur.password"/><br>
+<button *ngIf="selectedUtilisateur.id != -1" (click)="updateUtilisateur()"> Modifier </button>
+<button *ngIf="selectedUtilisateur.id == -1" (click)="createUtilisateur()"> Enregistrer </button>
+<button *ngIf="selectedUtilisateur.id != -1" (click)="deleteUtilisateur()"> Supprimer </button>

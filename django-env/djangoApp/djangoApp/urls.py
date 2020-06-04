@@ -5,7 +5,7 @@ from django.urls import include, path
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register(r'etudiants', views.EtudiantViewSet)
+router.register(r'utilisateurs', views.UtilisateurViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

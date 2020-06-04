@@ -1,10 +1,12 @@
 from django.db import models
 
 # Create your models here.
-class Etudiant(models.Model):
-    pseudo = models.CharField(max_length=25, unique=True, null=False)
-    password = models.CharField(max_length=10, null=False)
-
+class Utilisateur(models.Model):
+    nom = models.CharField(max_length=25, unique=False, null=False)
+    prenom = models.CharField(max_length=25, unique=False, null=False)
+    num = models.BigIntegerField()
+    role = models.CharField(max_length=50, null=False)
+    password = models.CharField(max_length=15, null=False)
 
 
 """

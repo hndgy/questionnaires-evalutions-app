@@ -12,26 +12,28 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  getAllEtudiant(): Observable<any> {
-    return this.http.get(this.baseurl + '/etudiants/',
+  getAllUtilisateurs(): Observable<any> {
+    return this.http.get(this.baseurl + '/utilistaeurs/',
     {headers: this.httpHeaders});
   }
-  getOneEtudiant(id): Observable<any> {
-    return this.http.get(this.baseurl + '/etudiants/' + id + '/',
+  getOneUtilisateur(id): Observable<any> {
+    return this.http.get(this.baseurl + '/utilisateurs/' + id + '/',
     {headers: this.httpHeaders});
   }
-  updateEtudiant(etudiant): Observable<any> {
-    const body = {pseudo: etudiant.pseudo , password: etudiant.password };
-    return this.http.put(this.baseurl + '/etudiants/' + etudiant.id + '/', body,
+  updateUtilisateur(utilisateur): Observable<any> {
+    const body = {nom: utilisateur.nom , prenom: utilisateur.prenom , num: utilisateur.num ,
+    role: utilisateur.role , password: utilisateur.password};
+    return this.http.put(this.baseurl + '/utilisateurs/' + utilisateur.id + '/', body,
     {headers: this.httpHeaders});
   }
-  createEtudiant(etudiant): Observable<any> {
-    const body = {pseudo: etudiant.pseudo , password: etudiant.password };
-    return this.http.post(this.baseurl + '/etudiants/', body,
+  createUtilisateur(utilisateur): Observable<any> {
+    const body = {nom: utilisateur.nom , prenom: utilisateur.prenom , num: utilisateur.num ,
+    role: utilisateur.role , password: utilisateur.password};
+    return this.http.post(this.baseurl + '/utilisateurs/', body,
     {headers: this.httpHeaders});
   }
-  deleteEtudiant(id): Observable<any> {
-    return this.http.delete(this.baseurl + '/etudiants/' + id + '/',
+  deleteUtilisateur(id): Observable<any> {
+    return this.http.delete(this.baseurl + '/utilisateurs/' + id + '/',
     {headers: this.httpHeaders});
   }
 }

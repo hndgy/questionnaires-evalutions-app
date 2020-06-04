@@ -1,14 +1,14 @@
 from rest_framework import viewsets
-from .serializers import EtudiantSerializer, EtudiantMiniSerializer
-from .models import Etudiant
+from .serializers import UtilisateurSerializer, UtilisateurMiniSerializer
+from .models import Utilisateur
 from rest_framework.response import Response
 
 
-class EtudiantViewSet(viewsets.ModelViewSet):
-    queryset = Etudiant.objects.all()
-    serializer_class = EtudiantSerializer
+class UtilisateurViewSet(viewsets.ModelViewSet):
+    queryset = Utilisateur.objects.all()
+    serializer_class = UtilisateurSerializer
 
     def list(self, request, *args, **kwargs):
-        etudiants = Etudiant.objects.all()
-        serializer = EtudiantMiniSerializer(etudiants, many=True)
+        utilisateurs = Utilisateur.objects.all()
+        serializer = UtilisateurMiniSerializer(utilisateurs, many=True)
         return Response(serializer.data)
