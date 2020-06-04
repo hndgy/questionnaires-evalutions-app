@@ -1,6 +1,6 @@
 from django.db import models
 
-# Create your models here.
+
 class Utilisateur(models.Model):
     nom = models.CharField(max_length=25, unique=False, null=False)
     prenom = models.CharField(max_length=25, unique=False, null=False)

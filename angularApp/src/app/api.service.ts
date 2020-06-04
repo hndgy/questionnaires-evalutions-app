@@ -13,7 +13,7 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   getAllUtilisateurs(): Observable<any> {
-    return this.http.get(this.baseurl + '/utilistaeurs/',
+    return this.http.get(this.baseurl + '/utilisateurs/',
     {headers: this.httpHeaders});
   }
   getOneUtilisateur(id): Observable<any> {
