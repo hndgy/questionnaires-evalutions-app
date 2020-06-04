@@ -21,12 +21,16 @@ from rest_framework import routers
 from django.conf.urls import include
 from menu_questionnaire import views
 
-router = routers.DefaultRouter()
-router.register(r'listQuestionnaire', views.QuestionnaireViews)
-router.register(r'listQuestion', views.QuestionViews)
-router.register(r'listReponse', views.ReponseViews)
+router = routers.SimpleRouter()
+router.register(r'Questionnaire', views.QuestionnaireViews)
+router.register(r'Question', views.QuestionViews)
+
 
 urlpatterns = [
+    path('api/create_user', views.api_create_utilisateur_views, name = "create_user"),
+    path('api/create_reponse', views.api_create_reponse_views, name = "create_reponse"),
+    path('api/show_questionnaire/<idQ>', views.api_get_questionnaire_views, name = "show_questionnaire_id"),
+    path('api/show_question/<idG>', views.api_get_question_views, name = "show_question_id"),
     path('api/', include(router.urls)),
     path('admin/', admin.site.urls),
 ]
