@@ -3,6 +3,8 @@ from .serializers import UtilisateurSerializer, UtilisateurMiniSerializer, Quest
     QuestionSerializers, ReponseSerializers
 from .models import Utilisateur, Questionnaire, Question, Reponse
 from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from menu_questionnaire import serializers
 
 
 class UtilisateurViewSet(viewsets.ModelViewSet):
