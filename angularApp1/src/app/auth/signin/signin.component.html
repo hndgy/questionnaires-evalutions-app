@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-sm-2"></div>
+    <div class="col-sm-8 col-sm-offset-2">
+      <h2>se Connecter</h2>
+      <form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="login"> Login </label>
+          <input type="text"
+                 id="login"
+                 class="form-control"
+                 formControlName="login">
+        </div>
+        <div class="form-group">
+          <label for="pwd">Mot de passe </label>
+          <input type="password"
+                 id="pwd"
+                 class="form-control"
+                 formControlName="pwd">
+        </div>
+        <button class="btn btn-primary"
+                type="submit"
+                [disabled]="signinForm.invalid">se Connecter</button>
+        
+                <a routerLink="/create-user" > Créer un compte </a>
+      </form>
+      <p class="text-danger">{{ errorMessage | json }}</p>
+    </div>
+    <div class="col-sm-2"></div>
+  </div>

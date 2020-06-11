@@ -1,0 +1,17 @@
+<div class="row">
+
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+        <div class="list-group">
+            <div class="list-group-item" *ngFor="let q of this.questionnaires"> 
+                {{q.nom}} [id = {{q.id}}] 
+                <button class="btn btn-success" (click)="afficherQuestionnaire(q.id)">
+                     Participer
+                    </button>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="col-sm-4"></div>
+</div>

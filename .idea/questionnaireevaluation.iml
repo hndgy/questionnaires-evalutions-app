@@ -8,7 +8,7 @@
   <component name="TemplatesService">
     <option name="TEMPLATE_FOLDERS">
       <list>
-        <option value="$MODULE_DIR$/angularApp/node_modules/codelyzer/angular/templates" />
+        <option value="$MODULE_DIR$/django-env/lib/python3.7/site-packages/django/forms/templates" />
       </list>
     </option>
   </component>

@@ -1,0 +1,73 @@
+<div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+        <h2 class="mx-auto">Questionnaire {{this.id}} : {{questionnaire.libelle}} </h2> 
+    
+
+    </div>
+    <div class="col-sm-4">
+   
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+
+        <button class="btn btn-success" *ngIf="!this.current_question && this.idx_question !== this.questionnaire.question.length" (click)="onCommencer()"> Commencer </button>
+
+        <div class="jumbotron" *ngIf="this.current_question">
+            <h5 class="display-3"> {{ this.current_question.libelle }}</h5>
+
+
+            <hr class="my-4">
+
+            <fieldset class="form-group" *ngIf="this.current_question.list_reponse.length > 0"> 
+                <div class="form-check" *ngFor="let id_rep of this.current_question.list_reponse;let i = index">
+                    <label class="form-check-label"> 
+                      <input class="form-check-input" type="checkbox" value="{{id_rep}}" 
+                      [checked]="isChecked(i)"
+                      (change)="onChangeCheck(i,$event.target.value)"
+                      >
+                      {{get_rep(id_rep)}}
+                    </label>
+                  </div>
+                
+            </fieldset>
+
+            <fieldset class="form-group" *ngIf="this.current_question.list_reponse.length === 0">
+                <label>Votre réponse : </label>
+                <textarea class="form-control" rows="3" 
+                [value]="this.getValueTxtAera()"
+                (input)="this.onChangeTextAera($event.target.value)"
+                
+                ></textarea>
+            </fieldset>
+
+
+
+
+            <button class="btn btn-primary" 
+            (click)="previous()" [disabled]="this.idx_question === 0"> < Précédent </button>
+            
+            <button class="btn btn-primary" (click)="next()"> Suivant > </button>
+
+    
+        
+          </div>
+
+          <div class="list-group" *ngIf="!this.current_question && this.idx_question === this.questionnaire.question.length"> 
+              <h2>Vos réponses</h2>
+                <div class="list-group-item" *ngFor="let une_rep of this.reponses; let i = index">
+                    <p> {{ questionnaire.question[i].libelle }}</p>
+                    <p> <span *ngFor="let r_val of une_rep.rep"> 
+                        <span *ngIf="r_val !== false ">{{r_val}} </span>
+                    </span> </p>
+                </div>
+                <a class="btn btn-primary" routerLink="/"> retour à l'acceuil </a>
+          </div>
+
+    </div>  
+    <div class="col-sm-4"></div>
+</div>
+
