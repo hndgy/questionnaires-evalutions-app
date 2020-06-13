@@ -14,8 +14,10 @@ def registration_view(request):
         serializer = serializers.RegistrationSerializer(data = request.data)
         data = {}
         if serializer.is_valid():
+            print(serializer.data)
             utilisateur = serializer.save()
             data['sucess']= "Vous etes correctement enregistré."
+            data['id'] = utilisateur.id
             token = Token.objects.get(user=utilisateur).key
             data['token'] = token
         else:
@@ -81,13 +83,17 @@ class QuestionViews(viewsets.ModelViewSet):
 @permission_classes((IsAuthenticated, ))
 def api_save_reponseUser_views(request):
     if request.method == "POST":
-        print(request.data)
-        serializer = serializers.ReponseUserSerializers(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status= status.HTTP_201_CREATED)
-        return Response(serializer.errors, status= status.HTTP_400_BAD_REQUEST)
-
+        questionnaire = Questionnaire.objects.get(id = request.data[0]['FK_Questionnaire'])
+        user = Utilisateur.objects.get(id = request.data[0]['FK_Utilisateur'])
+        questionnaire.listRepondant.add(user)
+        for elem in request.data:
+            serializer = serializers.ReponseUserSerializers(data=elem)
+            if serializer.is_valid():
+                serializer.save()
+            else:
+                return Response(serializer.errors,status= status.HTTP_404_NOT_FOUND)
+        return Response(data = {"sucess" : "les reponses ont été correctement enregistré"}, status = status.HTTP_201_CREATED)
+    return Response(data={"error" : "mauvaise requete"}, status= status.HTTP_404_NOT_FOUND)
 
 @api_view(['PUT'])
 @authentication_classes((TokenAuthentication, ))
@@ -306,18 +312,18 @@ def api_delete_reponse_views(request, idQ):
 @permission_classes((IsAuthenticated, ))
 def api_get_utilisateur_reponse(request, idU, idQ):
     try:
-        reponse = ReponseUser.objects.filter(FK_Utilisateur = idU, FK_Questionnaire = idQ).values()
+        reponse = ReponseUser.objects.filter(FK_Utilisateur_id = idU, FK_Questionnaire_id = idQ).values()
     except Reponse.DoesNotExist:
         return Response(data = {"success" : "cet utilisateur n'a pas répondu a ce questionnaire ou n'existe pas"}, status= status.HTTP_404_NOT_FOUND)
     if request.method == "GET":
-        data = {}
-        cnt = 0
-        for cle in reponse:
-            cnt+=1
-            serializer = serializers.ReponseUserGetSerializers(cle)
-            data['reponse'+str(cnt)] = serializer.data
-        print(serializer.data)
-        return Response(data)
+        print("ici")
+        if not reponse:
+            return Response(data = {"error" : "cette utilisateur n'a jamais participé a ce questionnaire"},status= status.HTTP_400_BAD_REQUEST)
+        else:
+            for elem in reponse:
+                serializer = serializers.ReponseUserGetSerializers(reponse)
+                return Response(serializer.data)
+    return Response(data = {"error" : "mauvaise requete"},status= status.HTTP_400_BAD_REQUEST)
 
 @api_view(['DELETE'])
 @authentication_classes((TokenAuthentication, ))
@@ -378,3 +384,28 @@ def api_update_user_views(request, idU):
             return Response(data = data)
         else:
             return Response(serializer.errors, status= status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+@authentication_classes((TokenAuthentication, ))
+@permission_classes((IsAuthenticated, ))
+def api_create_questionnaire_views(request):
+    if request.method == "POST":
+        serializer = serializers.QuestionnaireSerializers(data=request.data)
+        print(serializer)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status= status.HTTP_201_CREATED)
+        return Response(serializer.errors, status= status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+@authentication_classes((TokenAuthentication, ))
+@permission_classes((IsAuthenticated, ))
+def api_create_question_views(request):
+    if request.method == "POST":
+        serializer = serializers.QuestionSerializers(data=request.data)
+        print(serializer)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status= status.HTTP_201_CREATED)
+        return Response(serializer.errors, status= status.HTTP_400_BAD_REQUEST)

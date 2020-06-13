@@ -45,6 +45,8 @@ urlpatterns = [
     path('api/show_question/<idG>', views.api_get_question_views, name = "show_question_id"),
     path('api/delete_user/<idU>', views.api_delete_reponse_views, name = "delete_user"),
     path('api/update_user/<idU>', views.api_update_user_views, name = "update_user"),
+    path('api/create_question/', views.api_create_question_views, name = "create_question"),
+    path('api/create_questionnaire/', views.api_create_questionnaire_views, name = "create_questionnaire"),
     path('api/', include(router.urls)),
     path('admin/', admin.site.urls),
     url(r'^login/', CustomAuthToken.as_view()),

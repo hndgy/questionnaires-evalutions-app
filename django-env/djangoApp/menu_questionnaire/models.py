@@ -73,9 +73,14 @@ class Utilisateur(AbstractBaseUser):
 class Questionnaire(models.Model):
     libelle = models.CharField(max_length=50, null = False)
     prof = models.ForeignKey(Utilisateur, on_delete = models.PROTECT, related_name="%(class)s_create_utilisateur", null = False, default ="")
-    listRepondant = models.ManyToManyField(Utilisateur)
+    listRepondant = models.ManyToManyField(Utilisateur, blank = True)
     question = models.ManyToManyField("Question", blank = True)
 
+    def getListRepondant(self):
+        data = []
+        for elem in self.listRepondant.all():
+            data.append(elem)
+        return data
 
 class Reponse(models.Model):
     reponse = models.TextField(max_length= 100, null=False)
@@ -89,8 +94,6 @@ class Question(models.Model):
     list_reponse = models.ManyToManyField(Reponse, blank = True, related_name="%(class)s_liste_de_reponse")
     bonne_reponse = models.ManyToManyField(Reponse, blank = True, related_name="%(class)s_liste_de_bonne_reponse")
 
-    def __str__(self):
-        return self.libelle
 
 class ReponseUser(models.Model):
     FK_Questionnaire = models.ForeignKey(Questionnaire, on_delete = models.PROTECT, null = True)

@@ -33,7 +33,7 @@ class QuestionnaireGetSerializers(serializers.ModelSerializer):
 class RegistrationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Utilisateur
-        fields = ('nom', 'prenom', 'num', 'role', 'password')
+        fields = ('id', 'nom', 'prenom', 'num', 'role', 'password')
         extra_kwargs = {
                 'password' : {'write_only' : True }
         }
@@ -57,7 +57,31 @@ class UtilisateurSerializer(serializers.ModelSerializer):
 class ReponseUserGetSerializers(serializers.ModelSerializer):
     class Meta:
         model = ReponseUser
-        fields = ('id', 'FK_Question_id', 'FK_Utilisateur_id', 'reponse', 'FK_Questionnaire_id')
+        fields = ('id', 'recapitulatif')
+
+    recapitulatif = serializers.SerializerMethodField('get_recap_value')
+
+    def get_recap_value(self, obj):
+        data = []
+        b= []
+        a = []
+        chien = {}
+        id = None
+        for elem in obj:
+            if id != elem['FK_Question_id']:
+                id = elem['FK_Question_id']
+                if (Question.objects.get(id = elem['FK_Question_id']).bonne_reponse.count() <= 1):
+                    b.append({"question" : Question.objects.get(id = elem['FK_Question_id']).libelle, "reponse" : elem['reponse'] })
+                else:
+                    liste = []
+                    for reponse in obj:
+                        if (reponse['FK_Question_id'] == Question.objects.get(id = elem['FK_Question_id']).id):
+                            liste.append(reponse['reponse'])
+                    b.append({"question" : Question.objects.get(id = elem['FK_Question_id']).libelle, "reponse" :liste })
+        a = {"questionnaire" : Questionnaire.objects.get(id = elem['FK_Questionnaire_id']).libelle , "liste_reponse" : b}
+        data.append(dict(a))
+        return data
+
 
 class ReponseUserSerializers(serializers.ModelSerializer):
     class Meta:

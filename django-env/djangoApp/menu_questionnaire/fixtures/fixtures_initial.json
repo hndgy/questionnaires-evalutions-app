@@ -1,0 +1,317 @@
+[
+  {
+    "model": "menu_questionnaire.Questionnaire",
+    "pk": 1,
+    "fields": {
+      "libelle": "Reseau",
+      "prof": 3 ,
+      "listRepondant" : [2, 4],
+      "question" : []
+    }
+  },
+  {
+    "model": "menu_questionnaire.Questionnaire",
+    "pk": 2,
+    "fields": {
+      "libelle": "N-Tiers",
+      "prof": 3 ,
+      "listRepondant" : [2, 4],
+      "question" :  []
+    }
+  },
+  {
+    "model": "menu_questionnaire.Reponse",
+    "pk": 1,
+    "fields": {
+      "reponse" : "Interconnexion de réseaux"
+    }
+  },
+  {
+    "model": "menu_questionnaire.Reponse",
+    "pk": 2,
+    "fields": {
+      "reponse" : "Acheminer des données dans un réseau"
+    }
+  },
+  {
+    "model": "menu_questionnaire.Reponse",
+    "pk": 3,
+    "fields": {
+      "reponse" : "Le format des paquets échangés et des adresses des ordinateurs sur l'internet"
+    }
+  },
+  {
+    "model": "menu_questionnaire.Reponse",
+    "pk": 4,
+    "fields": {
+      "reponse" : "L'ensemble des pages HTML et les liens qui les relient d'un simple clic"
+    }
+  },
+  {
+    "model": "menu_questionnaire.Reponse",
+    "pk": 5,
+    "fields": {
+      "reponse" : "Un paquet de données en transit"
+    }
+  },
+  {
+    "model": "menu_questionnaire.Reponse",
+    "pk": 6,
+    "fields": {
+      "reponse" : "Collaborer d'égal à égal"
+    }
+  },
+  {
+    "model": "menu_questionnaire.Reponse",
+    "pk": 7,
+    "fields": {
+      "reponse" : "Construire des applications décentralisées"
+    }
+  },
+  {
+    "model": "menu_questionnaire.Reponse",
+    "pk": 8,
+    "fields": {
+      "reponse" : "8 bits"
+    }
+  },
+
+  {
+    "model": "menu_questionnaire.Reponse",
+    "pk": 9,
+    "fields": {
+      "reponse" : "Réseau international"
+    }
+  },
+  {
+    "model": "menu_questionnaire.Reponse",
+    "pk": 10,
+    "fields": {
+      "reponse" : "Réseau interne"
+      }
+    },
+  {
+    "model": "menu_questionnaire.Reponse",
+    "pk": 11,
+      "fields": {
+        "reponse" : "Filet international"
+      }
+  },
+  {
+    "model": "menu_questionnaire.Reponse",
+    "pk": 12,
+    "fields": {
+      "reponse" : "Envoyer des objets par la route"
+    }
+  },
+  {
+    "model": "menu_questionnaire.Reponse",
+    "pk": 13,
+    "fields": {
+      "reponse" : "Poser les câbles qui relient des ordinateurs entre eux"
+    }
+  },
+  {
+    "model": "menu_questionnaire.Reponse",
+    "pk": 14,
+    "fields": {
+      "reponse" : "Construire des routes"
+    }
+  },
+  {
+    "model": "menu_questionnaire.Reponse",
+    "pk": 15,
+    "fields": {
+      "reponse" : "Le fonctionnement de l'internet dans son ensemble"
+    }
+  },
+  {
+    "model": "menu_questionnaire.Reponse",
+    "pk": 16,
+    "fields": {
+      "reponse" : "Les autorisations légales des échanges au niveau international sur l'internet"
+    }
+  },
+  {
+    "model": "menu_questionnaire.Reponse",
+    "pk": 17,
+    "fields": {
+      "reponse" : "La procédure de standardisation de l'internet"
+    }
+  },
+  {
+    "model": "menu_questionnaire.Reponse",
+    "pk": 18,
+    "fields": {
+      "reponse" : "Le réseau des ordinateurs connectés par l'internet"
+    }
+  },
+  {
+    "model": "menu_questionnaire.Reponse",
+    "pk": 19,
+    "fields": {
+      "reponse" : "LUn piège tendu par « big brother » pour surveiller tous les ordinateurs"
+    }
+  },
+  {
+    "model": "menu_questionnaire.Reponse",
+    "pk": 20,
+    "fields": {
+      "reponse" : "C'est un sigle : Worldwide Electronic Base"
+    }
+  },
+  {
+    "model": "menu_questionnaire.Reponse",
+    "pk": 21,
+    "fields": {
+      "reponse" : "Une unité de mesure de données"
+    }
+  },
+  {
+    "model": "menu_questionnaire.Reponse",
+    "pk": 22,
+    "fields": {
+      "reponse" : "La représentation graphique de données dans un réseau"
+    }
+  },
+  {
+    "model": "menu_questionnaire.Reponse",
+    "pk": 23,
+    "fields": {
+      "reponse" : "Le poids d'un bit"
+    }
+  },
+  {
+    "model": "menu_questionnaire.Reponse",
+    "pk": 24,
+    "fields": {
+      "reponse" : "Pirater des fichiers"
+    }
+  },
+  {
+    "model": "menu_questionnaire.Reponse",
+    "pk": 25,
+    "fields": {
+      "reponse" : "Télécharger de la musique gratuitement"
+    }
+  },
+  {
+    "model": "menu_questionnaire.Reponse",
+    "pk": 26,
+    "fields": {
+      "reponse" : "10 bits"
+    }
+  },
+  {
+    "model": "menu_questionnaire.Reponse",
+    "pk": 27,
+    "fields": {
+      "reponse" : "12 bits"
+    }
+  },
+  {
+    "model": "menu_questionnaire.Reponse",
+    "pk": 28,
+    "fields": {
+      "reponse" : "6 bits"
+    }
+  },
+  {
+    "model": "menu_questionnaire.Reponse",
+    "pk": 29,
+    "fields": {
+      "reponse" : "Un paquet de données en transit"
+    }
+  },
+  {
+    "model": "menu_questionnaire.Question",
+    "pk": 1,
+    "fields": {
+      "libelle" : "Que signifie « Internet » ?",
+      "FK_Questionnaire" : 1,
+      "list_reponse" : [1, 9, 10, 11],
+      "bonne_reponse" : [1]
+    }
+  },
+
+  {
+    "model": "menu_questionnaire.Question",
+    "pk": 2,
+    "fields": {
+      "libelle" : "En quoi consiste le routage ?",
+      "FK_Questionnaire" : 1,
+      "list_reponse" : [2, 12, 13, 14],
+      "bonne_reponse" : [2]
+    }
+  },
+  {
+    "model": "menu_questionnaire.Question",
+    "pk": 3,
+    "fields": {
+      "libelle" : "Que définit le protocole IP (« Internet Protocol ») ?",
+      "FK_Questionnaire" : 1,
+      "list_reponse" : [3, 15, 16, 17],
+      "bonne_reponse" : [3]
+    }
+  },
+  {
+    "model": "menu_questionnaire.Question",
+    "pk": 4,
+    "fields": {
+      "libelle" : "Que désigne la toile (ou « web » en anglais) ?",
+      "FK_Questionnaire" : 1,
+      "list_reponse" : [4, 18, 19, 20],
+      "bonne_reponse" : [4]
+    }
+  },
+  {
+    "model": "menu_questionnaire.Question",
+    "pk": 5,
+    "fields": {
+      "libelle" : "Qu'est-ce qu'un datagramme ?",
+      "FK_Questionnaire" : 1,
+      "list_reponse" : [5, 21, 22, 29],
+      "bonne_reponse" : [5]
+    }
+  },
+  {
+    "model": "menu_questionnaire.Question",
+    "pk": 6,
+    "fields": {
+      "libelle" : "Quelle est l'utilité des réseaux de pair à pair (ou « peer-to-peer » en anglais) ? (Trouvez l'une des deux bonnes réponses)",
+      "FK_Questionnaire" : 1,
+      "list_reponse" : [6,7, 24, 25],
+      "bonne_reponse" : [6, 7]
+    }
+  },
+  {
+    "model": "menu_questionnaire.Question",
+    "pk": 7,
+    "fields": {
+      "libelle" : "Combien de bit possède un octet",
+      "FK_Questionnaire" : 1,
+      "list_reponse" : [8, 26, 27, 28],
+      "bonne_reponse" : [8]
+    }
+  },
+  {
+    "model": "menu_questionnaire.Question",
+    "pk": 8,
+    "fields": {
+      "libelle" : "Qu'est ce le reseau ?",
+      "FK_Questionnaire" : 1,
+      "list_reponse" : [],
+      "bonne_reponse" : []
+    }
+  },
+  {
+    "model": "menu_questionnaire.Questionnaire",
+    "pk": 1,
+    "fields": {
+      "libelle": "Reseau",
+      "prof": 3,
+      "listRepondant" : [2,4],
+      "question" : [1,2,3,4,5,6,7,8]
+    }
+  }
+]
