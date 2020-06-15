@@ -1,0 +1,27 @@
+<div class="row" *ngIf="this.recapitulatif">
+
+    <div class="col-sm-2">
+        
+    </div>
+
+    <div class="col-sm-8">
+       
+        <div class="list-group">
+            <div class="list-group-item" *ngFor="let q of this.recapitulatif.liste_reponse">
+                <h3>{{ q.question}} </h3>
+
+                <div *ngIf="this.isArray(q.reponse)">
+                    <p *ngFor="let r of q.reponse"> {{ r }}</p>
+                </div>
+                <div *ngIf=" ! this.isArray(q.reponse)">
+                    <p> {{ q.reponse }}</p>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="col-sm-2"></div>
+</div>

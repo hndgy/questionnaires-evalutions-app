@@ -1,0 +1,60 @@
+<div class="row">
+    <div class="col-sm-2"> 
+
+        <a routerLink="/" class="btn btn-default">
+            Retour
+        </a>
+    </div>
+    <div class="col-sm-8 mb-5" *ngIf="this.questionnaire">
+
+        <h1 class="mx-auto">{{this.questionnaire.libelle}} </h1>
+        
+        <form [formGroup]="formQuestionnaire" (ngSubmit)="onSubmit()">
+        <div class="jumbotron" *ngFor="let question of this.questionnaire.question_value; let i = index">
+            <h1 class="display-5">
+                Question {{ i + 1 }} : {{question.libelle }}
+            </h1>
+
+            <hr class="my-4">
+
+            
+                
+                <div *ngIf="question.list_reponse.length > 0">
+            
+                    <div class="form-group form-check" *ngFor="let rep of question.list_reponse; let j = index " >
+
+                        <input type="checkbox" class="form-check-input" formControlName="{{question.id + '' + rep.id}}" value="{{rep.reponse}}">
+                        <label class="form-check-label" >{{ rep.reponse }}</label>
+                    </div>
+                 </div>
+               
+                    <div class="input-group" *ngIf=" question.list_reponse.length === 0">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">Votre réponse</span>
+                        </div>
+                        <input type="text" class="form-control" formControlName="{{question.id.toString()}}" />
+                      </div>
+                  
+        
+
+
+            
+          </div>
+
+          <button class="btn btn-success" type="submit"> Envoyer vos réponses </button>
+          <p *ngIf="this.sending"> Envoie en cours...</p>
+          </form>
+          
+
+        <div class="alert alert-danger" role="alert" *ngIf="this.message">
+            {{this.message}}
+        </div>
+
+    </div >
+
+    <div class="col-sm-8" *ngIf="this.questionnaire" >
+        Chargement...
+    </div>
+    <div class="col-sm-2"></div>
+
+</div>

@@ -1,0 +1,28 @@
+<div class="row">
+
+
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+
+        <h1>Créer un nouveau questionnaire</h1>
+
+
+        <form [formGroup]="this.questionnaireForm" (ngSubmit)="onSubmit()">
+
+            <div class="form-group">
+            <label for="libelle"> Nom du questionnaire </label>
+            <input type="text"
+                   id="libelle"
+                   class="form-control"
+                   formControlName="libelle">
+          </div>
+
+          <button class="btn btn-success" type="submit">
+              Enregistrer
+          </button>
+
+        </form>
+
+    </div>
+    <div class="col-sm-2"></div>
+</div>

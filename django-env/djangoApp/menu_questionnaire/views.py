@@ -403,9 +403,37 @@ def api_create_questionnaire_views(request):
 @permission_classes((IsAuthenticated, ))
 def api_create_question_views(request):
     if request.method == "POST":
-        serializer = serializers.QuestionSerializers(data=request.data)
-        print(serializer)
+        list_question = []
+        for elem in request.data:
+            list_reponse = []
+            bonne_reponse = []
+            for e in elem['list_reponse']:
+                for u in elem['bonne_reponse']:
+                    if e == u:
+                        print(u)
+                        serializer = serializers.ReponseSerializers(data={'reponse' : u})
+                        if serializer.is_valid():
+                            serializer.save()
+                            list_reponse.append(serializer.data['id'])
+                            bonne_reponse.append(serializer.data['id'])
+                    else:
+                        serializer = serializers.ReponseSerializers(data={'reponse' : u})
+                        print(serializer)
+                        if serializer.is_valid():
+                            serializer.save()
+                            list_reponse.append(serializer.data['id'])
+            elem['list_reponse'] = list_reponse
+            elem['bonne_reponse'] = bonne_reponse
+            serializer = serializers.QuestionSerializers(data=elem)
+            if serializer.is_valid():
+                serializer.save()
+                list_question.append(serializer.data['id'])
+        questionnaire = Questionnaire.objects.get(id = request.data[0]['FK_Questionnaire'])
+        print(list_question)
+        serializer = serializers.QuestionnaireSerializers(questionnaire, data = {"question" : list_question})
         if serializer.is_valid():
+            print('ici')
             serializer.save()
-            return Response(serializer.data, status= status.HTTP_201_CREATED)
+        return Response(data = {"succes" : "donnée correctement ajouté et liste de question du questionnaire actualisé"}, status= status.HTTP_201_CREATED)
+    else:
         return Response(serializer.errors, status= status.HTTP_400_BAD_REQUEST)
