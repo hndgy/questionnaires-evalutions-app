@@ -22,6 +22,8 @@ import { Questionnaire2Component } from './question/questionnaire2/questionnaire
 import { CreateUserComponent } from './auth/create-user/create-user.component';
 import { UserComponent } from './user/user.component';
 import { RecapitulatifComponent } from './recapitulatif/recapitulatif.component';
+import { CreateQuestionComponent } from './create/create-question/create-question.component';
+import { ApercuComponent } from './create/apercu/apercu.component';
 
 
 
@@ -29,9 +31,11 @@ const appRoutes : Routes = [
   {path : '' ,component: HomeComponent},
   {path : 'questionnaire/:id', canActivate: [AuthGuardService] , component: Questionnaire2Component},
   {path : 'recap/:id', canActivate: [AuthGuardService] , component: RecapitulatifComponent},
+  {path : 'create',canActivate: [AuthGuardService],  component: CreateComponent},
+  {path : 'create/question/:id', canActivate: [AuthGuardService] , component: CreateQuestionComponent},
+  {path : 'create/apercu/:id', canActivate: [AuthGuardService] , component: ApercuComponent},
 
   {path : 'signin', component: SigninComponent},
-  {path : 'create',canActivate: [AuthGuardService],  component: CreateComponent},
   {path : 'create-user', component: CreateUserComponent}
 
 ]
@@ -51,7 +55,9 @@ const appRoutes : Routes = [
     Questionnaire2Component,
     CreateUserComponent,
     UserComponent,
-    RecapitulatifComponent
+    RecapitulatifComponent,
+    CreateQuestionComponent,
+    ApercuComponent
   ],
   imports: [
     BrowserModule,

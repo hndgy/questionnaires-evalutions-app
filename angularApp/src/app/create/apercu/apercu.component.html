@@ -1,0 +1,26 @@
+<div class="row">
+
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+        <h1> {{ this.questionnaire.libelle}} </h1>
+
+        <div class="list-group">
+
+            <div class="list-group-item" *ngFor="let q of this.questionnaire.question_value">
+                <h5> {{ q.libelle}} </h5>
+                <div> 
+                    <p *ngFor="let rep of q.list_reponse">
+                        {{rep.reponse}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-2"> 
+
+        <button class="btn btn-primary" (click)="onAjouter()">
+            Ajouter une question
+        </button>
+    </div>
+</div>

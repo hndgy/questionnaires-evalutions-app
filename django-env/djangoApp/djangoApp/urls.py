@@ -24,10 +24,10 @@ from rest_framework.authtoken.views import obtain_auth_token
 from menu_questionnaire.serializers import CustomAuthToken
 
 router = routers.SimpleRouter()
-router.register(r'Questionnaire', views.QuestionnaireViews)
 router.register(r'Question', views.QuestionViews)
 
 urlpatterns = [
+    path('api/questionnaire', views.api_get_questionnaire_all_views, name = 'questionnaire_list'),
     path('register', views.registration_view, name = 'register_user'),
     path('api/get_utilisateur/<num>/<password>/', views.api_get_Etudiant_views, name = 'get_utilisateur'),
     path('api/update_reponse/<idR>/', views.api_put_reponse_views, name = 'update_reponse'),
@@ -47,6 +47,9 @@ urlpatterns = [
     path('api/update_user/<idU>', views.api_update_user_views, name = "update_user"),
     path('api/create_question/', views.api_create_question_views, name = "create_question"),
     path('api/create_questionnaire/', views.api_create_questionnaire_views, name = "create_questionnaire"),
+    path('api/update_question_questionnaire/<idQ>/<idQuest>', views.api_put_question_questionnaire_views, name = "update_question_selon_questionnaire"),
+    path('api/delete_question_questionnaire/<idQ>/<idQuest>', views.api_delete_question_questionanire_views, name = "delete_question_selon_questionnaire"),
+    path('api/add_question_questionnaire/<idQ>/<idQuest>', views.api_add_question_questionnaire_views, name = "add_question_selon_questionnaire"),
     path('api/', include(router.urls)),
     path('admin/', admin.site.urls),
     url(r'^login/', CustomAuthToken.as_view()),

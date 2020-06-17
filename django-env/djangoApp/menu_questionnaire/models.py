@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth.models import AbstractBaseUser
 from django.conf import settings
 from django.db.models.signals import post_save
@@ -19,7 +18,6 @@ class UserManager(BaseUserManager):
         user = self.model(
             num= num,
         )
-
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -58,7 +56,7 @@ class Utilisateur(AbstractBaseUser):
     REQUIRED_FIELDS = ['nom', 'prenom']
 
     def __str__(self):
-        return self.nom
+        return self.libelle
 
     def has_perm(self, perm, obj=None):
         "Does the user have a specific permission?"

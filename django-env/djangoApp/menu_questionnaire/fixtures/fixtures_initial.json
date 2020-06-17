@@ -5,7 +5,7 @@
     "fields": {
       "libelle": "Reseau",
       "prof": 3 ,
-      "listRepondant" : [2, 4],
+      "listRepondant" : [],
       "question" : []
     }
   },
@@ -15,7 +15,7 @@
     "fields": {
       "libelle": "N-Tiers",
       "prof": 3 ,
-      "listRepondant" : [2, 4],
+      "listRepondant" : [],
       "question" :  []
     }
   },

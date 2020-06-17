@@ -1,0 +1,53 @@
+<div class="row">
+
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+        <form [formGroup]="this.questionForm" (ngSubmit)="onSubmit()">
+
+            <div class="form-group">
+            <label for="libelle"> Nom de la question </label>
+            <input type="text"
+                   id="libelle"
+                   class="form-control"
+                   formControlName="libelle">
+          </div>
+
+          <div formArrayName="reponses">
+
+            <p>Réponses</p>
+
+
+            <div class="form-group" *ngFor="let rep of this.getReponses().controls; let i = index">
+                <input type="text" class="form-control" [formControlName]="i">
+
+            </div>
+            <button type="button" class="btn btn-success" (click)="onAddReponse()">+</button>
+
+            
+
+
+          </div>
+
+          <div formArrayName="bonneReponses">
+
+            <p>Les bonnes réponses</p>
+
+
+            <div class="form-group" *ngFor="let rep of this.getBonneReponses().controls; let i = index">
+                <input type="text" class="form-control" [formControlName]="i">
+
+            </div>
+            <button type="button" class="btn btn-success" (click)="onAddBonneReponse()">+</button>
+
+            
+
+
+          </div>
+          <button class="btn btn-success" type="submit" [disabled]="this.questionForm.invalid">
+              Enregistrer
+          </button>
+
+        </form>
+    </div>
+    <div class="col-sm-2"></div>
+</div>

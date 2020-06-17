@@ -62,6 +62,7 @@ export class CreateUserComponent implements OnInit {
     this.apiService.create_user(nomVal,prenomVal,numVal,roleVal, pwdVal).subscribe(
       (res) => {
         this.apiService.setToken(res['token']);
+        this.authService.connected_user = res['id'];
         this.authService.isAuth = true;
         this.authService.emitIsAuth();
         this.router.navigate(['/']); 

@@ -12,53 +12,54 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class SigninComponent implements OnInit {
 
-  signinForm : FormGroup;
-  errorMessage : string;
+  signinForm: FormGroup;
+  errorMessage: string;
 
 
-  constructor( 
+  constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private apiService: ApiService,
-    private router : Router) { }
+    private router: Router) { }
 
   ngOnInit(): void {
     this.initForm();
   }
 
-  initForm(){
+  initForm() {
     this.signinForm = this.formBuilder.group({
       login : ['o2177545', [Validators.required]],
       pwd : ['test', [Validators.required]]
     });
   }
 
-  onSubmit(){
+  onSubmit() {
     const login = this.signinForm.get('login').value;
     const pwd = this.signinForm.get('pwd').value;
 
-    console.log("login...");
-    
+    console.log('login...');
+
     this.apiService.login(login, pwd).subscribe(
       (res) => {
+
         console.log(res);
-        
+
         console.log('login ok..');
-        
-        this.authService.setToken(res['token']);
+
+        this.authService.setToken(res.token);
         this.authService.isAuth = true;
         this.authService.emitIsAuth();
-        this.authService.connected_user = res['user_id'];
-        this.router.navigate(['/']); 
-       
-      }, (error)=> {
-        this.errorMessage = error['error'];
+        this.authService.connected_user = res.user_id;
+        this.router.navigate(['/']);
+
+      }, (error) => {
+        this.errorMessage = error.error;
       }
     );
 
-   
-    
-    
+
+
+
   }
 
 }

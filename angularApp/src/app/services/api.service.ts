@@ -28,7 +28,7 @@ export class ApiService {
   getListQuestionnaire(){
   
     
-    return this.httpClient.get(this.api_host + "Questionnaire/", );
+    return this.httpClient.get(this.api_host + "questionnaire/", );
   }
 
   getListQuestion(){
@@ -96,10 +96,7 @@ export class ApiService {
 
   create_question(liste_question){
 
-    return this.httpClient.post(this.api_host + "create_question", 
-    {
-      liste_question
-    } ,{ 'headers' : this.headers});
+    return this.httpClient.post(this.api_host + "create_question/",liste_question,{ 'headers' : this.headers});
 
 
   }

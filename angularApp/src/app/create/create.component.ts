@@ -47,14 +47,8 @@ export class CreateComponent implements OnInit {
     const lib = this.questionnaireForm.get('libelle').value ;
 
    this.apiService.create_questionnaire(lib,this.authService.connected_user).subscribe(
-
-      
-      (res) => {
-        console.log("ok.");
-        
-        
-        
-        this.router.navigate(['/']);
+      (res) => {   
+        this.router.navigate(['/create','question',res["id"]]);
         
       }
     );
